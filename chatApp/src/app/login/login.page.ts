@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AlertController, NavController} from '@ionic/angular';
 import {FirebaseService} from '../services/firebase.service';
-import {LoginResult} from '../UserData';
 
 @Component({
     selector: 'app-login',
@@ -23,6 +22,7 @@ export class LoginPage implements OnInit {
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
+
     async showTextAlert(error: Error) {
         const alert = await this.alertController.create({
             header: 'Login Problem',
@@ -38,22 +38,23 @@ export class LoginPage implements OnInit {
     }
 
     logLogin() {
-        try{
+        try {
             this.fireServ.LogIn(this.loginForm.value.email, this.loginForm.value.password)
                 .then(value => {
-                    if (value.user.emailVerified){
+                    if (value.user.emailVerified) {
                         this.nav.navigateRoot(['home']);
-                    }
-                    else {
+                    } else {
                         this.nav.navigateForward(['email-verification']);
                     }
-                });
-        }
-        catch (error){
+                }).catch((error: Error) => {
+                throw error;
+            });
+        } catch (error) {
             this.showTextAlert(error);
-            }
+        }
     }
-    signInButton(){
+
+    signInButton() {
         this.nav.navigateForward(['register']);
     }
 }

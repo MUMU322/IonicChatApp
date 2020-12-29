@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="goBack()" id="backIcon" slot="start" name="arrow-back"></ion-icon>
+    <ion-title>my-user</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>Nom: </ion-label>
+          <ion-text>{{myUser.nom}}</ion-text>
+      </ion-item>
+        <ion-item>
+            <ion-label>Prenom: </ion-label>
+            <ion-text>{{myUser.prenom}}</ion-text>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date Naissance: </ion-label>
+            <ion-text>{{myUser.naissance}}</ion-text>
+        </ion-item>
+    </ion-list>
+
+    <ion-button (click)="logout()">Logout</ion-button>
+</ion-content>

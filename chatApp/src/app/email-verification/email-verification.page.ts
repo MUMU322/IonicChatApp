@@ -27,20 +27,13 @@ export class EmailVerificationPage implements OnInit {
 
 
     ngOnInit() {
-        this.fireServ.sendVerificationEmail();
     }
     sendNewEmail(){
         this.fireServ.sendVerificationEmail();
         this.textToast(' new verification email sent !!');
     }
     checkEmailVerified(){
-        if (this.fireServ.isEmailVerified){
-            console.log(this.fireServ.isEmailVerified);
             this.nav.navigateRoot(['home']);
-        }
-        else{
-            this.textToast('NOPE are you sure you cliked on the email ?');
-        }
     }
 
 

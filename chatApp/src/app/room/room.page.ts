@@ -46,6 +46,7 @@ export class RoomPage implements OnInit, OnDestroy {
         this.messageSub = this.firebaseService.getMessages(this.myRoom).subscribe(data => {
             this.messagesList = data.map(value => {
                 return {
+                    id: value.payload.doc.id,
                     date: value.payload.doc.data()['date'.toString()],
                     user: value.payload.doc.data()['user'.toString()],
                     message: value.payload.doc.data()['message'.toString()]
@@ -58,6 +59,7 @@ export class RoomPage implements OnInit, OnDestroy {
     sendMessage() {
         const myDate = new Date();
         const message: MessageData = {
+            id : null,
             message: this.chatForm.value.text,
             user: this.myUser,
             date: myDate

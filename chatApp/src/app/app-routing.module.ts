@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'home/room',
     loadChildren: () => import('./room/room.module').then( m => m.RoomPageModule)
   },
+  {
+    path: 'home/my-user',
+    loadChildren: () => import('./my-user/my-user.module').then( m => m.MyUserPageModule)
+  },
 ];
 
 @NgModule({

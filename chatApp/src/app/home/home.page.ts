@@ -92,4 +92,13 @@ export class HomePage implements OnDestroy {
         this.getMyRooms.unsubscribe();
         this.getMyUserSub.unsubscribe();
     }
+
+    goProfile() {
+        const extra: NavigationExtras = {
+            state: {
+                user: this.myuser
+            }
+        };
+        this.nav.navigateForward(['home/my-user'], extra);
+    }
 }

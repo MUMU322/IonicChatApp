@@ -7,7 +7,7 @@
 
 <ion-content>
     <ion-list>
-        <app-message-item [data]="message" *ngFor="let message of messagesList"></app-message-item>
+        <app-message-item [myRoom]="myRoom" [myUser]="myUser" [data]="message" *ngFor="let message of messagesList"></app-message-item>
     </ion-list>
 
 </ion-content>

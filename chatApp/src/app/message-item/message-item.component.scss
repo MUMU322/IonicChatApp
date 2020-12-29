@@ -1,0 +1,33 @@
+ion-card-content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+}
+ion-card{
+  margin-top: 0px;
+}
+#currentUserMsg{
+  background-color: lightcyan;
+}
+#remoteUserMsg{
+  background-color: lightgrey;
+}
+#topInfo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  color: lightgray;
+}
+//app-message-item{
+//  margin-top: 5dp;
+//}

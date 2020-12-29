@@ -1,3 +1,34 @@
-<p>
-    {{message.message}}
-</p>
+<div *ngIf="message.user.uid === myUser.uid; else elseBlock">
+    <div id="topInfo">
+        <p>Vous</p>
+        <p><p>
+
+    </div>
+    <ion-card id="currentUserMsg" >
+        <!--    <ion-card-header>-->
+        <!--        <ion-card-subtitle>{{message.user.nomUtilisateur}}</ion-card-subtitle>-->
+        <!--    </ion-card-header>-->
+        <ion-card-content>
+            <div>
+                <ion-textarea auto-grow readonly="true" value="{{message.message}}">
+                </ion-textarea>
+            </div>
+            <ion-icon (click)="trashMessage()" name="trash"></ion-icon>
+        </ion-card-content>
+    </ion-card>
+</div>
+<ng-template #elseBlock>
+
+    <div id="topInfo">
+        <p>{{message.user.nomUtilisateur}}</p>
+        <p></p>
+
+    </div>
+    <ion-card id="remoteUserMsg">
+        <ion-card-content>
+            <ion-textarea auto-grow readonly="true" value="{{message.message}}">
+            </ion-textarea>
+        </ion-card-content>
+    </ion-card>
+
+</ng-template>

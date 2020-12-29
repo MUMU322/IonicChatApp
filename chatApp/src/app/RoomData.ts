@@ -16,6 +16,7 @@ export class RoomData{
 }
 
 export class MessageData{
+    id: string;
     user: UserData;
     date: Date;
     message: string;

@@ -4,9 +4,8 @@ import {UserData} from '../UserData';
 import {AngularFireAuth} from '@angular/fire/auth';
 import firebase from 'firebase';
 import {Observable} from 'rxjs';
-import UserCredential = firebase.auth.UserCredential;
-import User = firebase.User;
 import {MessageData, RoomData} from '../RoomData';
+import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
     providedIn: 'root'
@@ -37,9 +36,11 @@ export class FirebaseService {
             .then((res) => {
                 localStorage.setItem('userAuth', JSON.stringify(res.user));
                 console.log(localStorage.getItem('userAuth'));
+                this.userAuth = res.user;
                 userData.uid = res.user.uid;
                 credential = res.user;
                 console.log(userData.uid);
+                this.sendVerificationEmail();
                 this.CreateUpdateUserData(userData);
             })
             .catch((error) => {
@@ -69,7 +70,7 @@ export class FirebaseService {
                 });
                 return res;
             })
-            .catch(error => {
+            .catch((error: Error) => {
                 throw error;
             });
     }
@@ -86,6 +87,7 @@ export class FirebaseService {
     get users() {
         return this.firestore.collection('users').snapshotChanges();
     }
+
 
     sendVerificationEmail() {
         firebase.auth().currentUser.sendEmailVerification();
@@ -125,11 +127,14 @@ export class FirebaseService {
         this.firestore.collection('discussions').doc(room.uid).collection('messages').add(message);
     }
 
+    deleteMessage(roomId: string, messageId: string){
+        this.firestore.collection('discussions').doc(roomId).collection('messages').doc(messageId).delete();
+    }
+
     get isEmailVerified(): boolean {
-        const local = JSON.parse(localStorage.getItem('userAuth')).isEmailVerified;
-        return local;
-
-
+        // this.fireAuth.updateCurrentUser(this.userAuth);
+        // return this.userAuth.emailVerified;
+        return JSON.parse(localStorage.getItem('userAuth')).isEmailVerified;
     }
 
     get isLoggedIn(): boolean {
@@ -137,11 +142,4 @@ export class FirebaseService {
         return (user !== null && user.emailVerified !== false);
     }
 
-    /*getMessages(){
-      this.firestore.collection('').snapshotChanges(['added']).subscribe(actions => {
-        actions.forEach(action => {
-          console.log('Item: ' + action.payload.doc.data()['text']);
-        });
-      });
-    }*/
 }

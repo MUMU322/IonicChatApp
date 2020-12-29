@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MessageData} from '../RoomData';
+import {MessageData, RoomData} from '../RoomData';
+import {UserData} from '../UserData';
+import {FirebaseService} from '../services/firebase.service';
 
 @Component({
     selector: 'app-message-item',
@@ -9,11 +11,20 @@ import {MessageData} from '../RoomData';
 export class MessageItemComponent implements OnInit {
 
     @Input('data') message: MessageData;
+    @Input('myUser') myUser: UserData;
+    @Input('myRoom') room: RoomData;
 
-    constructor() {
+    date: Date;
+    constructor(
+        private firebaseService: FirebaseService,
+    ) {
     }
 
     ngOnInit() {
     }
 
+    trashMessage() {
+        console.log(this.message.id);
+        this.firebaseService.deleteMessage(this.room.uid, this.message.id);
+    }
 }
