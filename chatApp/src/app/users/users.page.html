@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-icon (click)="goBack()" id="backIcon" slot="start" name="arrow-back"></ion-icon>
+        <ion-title>users</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <app-user-list-item (click)="goChat(user)" [data]="user" *ngFor="let user of userlist">
+        </app-user-list-item>
+    </ion-list>
+
+</ion-content>

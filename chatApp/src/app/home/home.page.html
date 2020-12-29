@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-icon id="profileIcon" slot="start" name="person-circle-outline"></ion-icon>
+        <ion-title id="toolbarTitle">
+            Mes salons
+        </ion-title>
+        <ion-icon (click)="openUserList()" id="friendsIcon" slot="end" name="people-outline"></ion-icon>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-list>
+        <app-user-list-item (click)="goChat(room)" [data]="room.user1"
+                            *ngFor="let room of roomList"></app-user-list-item>
+    </ion-list>
+
+</ion-content>

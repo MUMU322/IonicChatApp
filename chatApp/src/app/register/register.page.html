@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>register</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="registerUserForm" (ngSubmit)="logNewUser()">
+        <ion-item>
+            <ion-label>Prénom</ion-label>
+            <ion-input type="text" formControlName="prenom"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Nom</ion-label>
+            <ion-input type="text" formControlName="nom"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Pseudo</ion-label>
+            <ion-input type="text" formControlName="pseudo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Email</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Adresse</ion-label>
+            <ion-input type="text" formControlName="adresse"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>code postal</ion-label>
+            <ion-input type="number" formControlName="codePostal"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Ville</ion-label>
+            <ion-input type="text" formControlName="ville"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date de naissance</ion-label>
+            <ion-input type="text" formControlName="dateNaissance"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mot de Passe</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button type="submit" [disabled]="!registerUserForm.valid" expand="block" fill="clear" shape="round">
+            Créer
+        </ion-button>
+    </form>
+    <ion-button expand="block" fill="clear" shape="round">
+        Vous voulez dire login ?
+    </ion-button>
+</ion-content>

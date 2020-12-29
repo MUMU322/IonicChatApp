@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-icon (click)="goBack()" id="backIcon" slot="start" name="arrow-back"></ion-icon>
+        <ion-title>{{extUser.nomUtilisateur}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <app-message-item [data]="message" *ngFor="let message of messagesList"></app-message-item>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+        <ion-item>
+            <ion-textarea
+                    formControlName="text"
+                    placeholder="Start chatting here"
+                    auto-grow="true"
+                    enterkeyhint="send"
+                    inputmode="text"
+                    spellcheck="true">
+            </ion-textarea>
+        </ion-item>
+        <ion-button slot="end" type="submit" [disabled]="!chatForm.valid" fill="solid" shape="round">
+            <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+    </form>
+</ion-footer>
